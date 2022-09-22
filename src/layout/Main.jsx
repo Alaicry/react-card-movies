@@ -4,12 +4,11 @@ import Preloader from "../components/Preloader";
 import Search from "../components/Search";
 
 function Main() {
-	const API_KEY = "d5a51949";
 	const [movies, setMovies] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const searchMovie = (str, type = "all") => {
 		setLoading(true);
-		fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${str}${type !== "all" ? `&type=${type}` : ""}`)
+		fetch(`http://www.omdbapi.com/?apikey=d5a51949&s=${str}${type !== "all" ? `&type=${type}` : ""}`)
 			.then((res) => res.json())
 			.then((data) => {
 				setLoading(false);
@@ -22,7 +21,7 @@ function Main() {
 	};
 
 	useEffect(() => {
-		fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=spider-man`)
+		fetch(`http://www.omdbapi.com/?apikey=d5a51949&s=spider-man`)
 			.then((res) => res.json())
 			.then((data) => {
 				setMovies(data.Search);
