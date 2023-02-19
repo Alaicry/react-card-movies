@@ -3,14 +3,16 @@ import Footer from "./layout/Footer";
 import Header from "./layout/Header";
 import Main from "./layout/Main";
 
-function App() {
+type Props = {};
+
+const App = (props: Props) => {
 	return (
-		<>
+		<React.Fragment>
 			<Header />
-      <Main />
-      <Footer />
-		</>
+			<Main />
+			<Footer />
+		</React.Fragment>
 	);
-}
+};
 
 export default App;
