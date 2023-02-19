@@ -30,7 +30,7 @@ const Filters: React.FC = () => {
 		<form className="w-full">
 			<div className="flex items-center border-b border-teal-800 py-2">
 				<input
-					className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none sm:text-base xsm:text-[15px]"
+					className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none md:text-lg sm:text-base xsm:text-[15px]"
 					type="text"
 					placeholder="Enter movie name"
 					aria-label="Movie name"

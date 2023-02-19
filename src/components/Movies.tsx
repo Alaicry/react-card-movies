@@ -21,7 +21,7 @@ const Movies: React.FC = () => {
 					))}
 				</ul>
 			) : (
-				<h2 className="text-center pt-6 pb-4">Movie not found!!!</h2>
+				<h2 className="text-center pt-6 pb-4">Loading...</h2>
 			)}
 		</React.Fragment>
 	);
