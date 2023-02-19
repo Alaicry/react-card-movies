@@ -6,24 +6,25 @@ import { useAppDispatch } from "../redux/store";
 
 const Filters: React.FC = () => {
 	const dispatch = useAppDispatch();
-	const [movieSearch, setMovieSearch] = React.useState("");
-	const [movieType, setMovieType] = React.useState("all");
 	const { search, radioType } = useSelector(selectFilters);
 
 	const handleFilter = (e: React.ChangeEvent<HTMLInputElement>): void => {
-		setMovieType(e.target.value);
 		dispatch(setRadioType(e.target.value));
 	};
 
 	const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>): void => {
-		setMovieSearch(e.target.value);
 		dispatch(setSearch(e.target.value));
 	};
 
 	const resetSearch = (): void => {
-		setMovieSearch("");
-		setMovieType("all");
 		dispatch(resetFilters());
+	};
+
+	const handleKeySearch = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+		if (e.key === "Enter") {
+			e.preventDefault();
+			dispatch(fetchSearchMovies({ search, radioType }));
+		}
 	};
 
 	return (
@@ -34,14 +35,15 @@ const Filters: React.FC = () => {
 					type="text"
 					placeholder="Enter movie name"
 					aria-label="Movie name"
-					value={movieSearch}
+					value={search}
 					onChange={onChangeSearch}
+					onKeyDown={handleKeySearch}
 				/>
 				<button
 					type="button"
 					className="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-lg border-4 text-white py-1 px-2 rounded sm:text-base xsm:text-xs"
 					onClick={() => dispatch(fetchSearchMovies({ search, radioType }))}
-					disabled={movieSearch === "" ? true : false}
+					disabled={search === "" ? true : false}
 				>
 					Search
 				</button>
@@ -61,7 +63,7 @@ const Filters: React.FC = () => {
 							type="radio"
 							name="list-radio"
 							value="all"
-							checked={movieType === "all"}
+							checked={radioType === "all"}
 							onChange={handleFilter}
 						/>
 						<label className="w-full py-3 ml-2 font-medium">All</label>
@@ -74,7 +76,7 @@ const Filters: React.FC = () => {
 							type="radio"
 							name="list-radio"
 							value="movie"
-							checked={movieType === "movie"}
+							checked={radioType === "movie"}
 							onChange={handleFilter}
 						/>
 						<label className="w-full py-3 ml-2 font-medium">Movies</label>
@@ -87,7 +89,7 @@ const Filters: React.FC = () => {
 							type="radio"
 							name="list-radio"
 							value="series"
-							checked={movieType === "series"}
+							checked={radioType === "series"}
 							onChange={handleFilter}
 						/>
 						<label className="w-full py-3 ml-2 font-medium">Series</label>

@@ -23,7 +23,7 @@ const filterSlice = createSlice({
 		},
 		resetFilters: (state) => {
 			state.search = "";
-			state.radioType = "";
+			state.radioType = "all";
 		},
 	},
 });
